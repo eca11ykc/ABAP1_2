@@ -1,0 +1,111 @@
+
+*&  Include           ZABAP1_TOP
+
+*&---------------------------------------------------------------------*
+
+class : lo_class definition deferred.
+
+data : gt_scustom like table of scustom,
+       gs_scustom like line of gt_scustom,
+       gt_scarr   like table of scarr,
+       gs_scarr   like line of gt_scarr,
+       gt_spfli   like table of spfli,
+       gs_spfli   like line of gt_spfli,
+       gt_sbook   like table of sbook,
+       gs_sbook   like line of gt_sbook,
+       gt_sflight like table of sflight,
+       gs_sflight like line of gt_sflight.
+
+
+data : begin of gs_alv.
+data : mark type c length 1.
+    include type sflight.
+data : cellcol type lvc_s_scol.
+data : celltab type lvc_t_styl.
+data : end of gs_alv,
+gt_alv like table of gs_alv.
+
+
+data : gt_insert like table of gs_alv,
+       gs_insert like line of gt_insert.
+
+data : gt_delete like table of gs_alv,
+       gs_delete like line of gt_delete.
+
+data : gt_backup like table of gs_alv,
+       gs_backup like line of gt_backup.
+
+data : gt_edit_mode like table of gs_alv,
+       gs_edit_mode like line of gt_edit_mode.
+
+data : gt_itab like table of gs_alv,
+       gs_itab like line of gt_itab.
+
+data : gt_all_data like table of sflight,
+       gs_all_data like line of gt_all_data.
+
+
+data : lt_insert like table of gs_alv,
+       ls_insert like line of lt_insert.
+
+data : lt_change like table of gs_alv,
+       ls_change like line of lt_change.
+
+data : gt_f4 type lvc_t_f4,
+       gs_f4 type lvc_s_f4.
+
+data : go_event type ref to lo_class.
+
+data : go_grid      type ref to cl_gui_alv_grid,
+       go_grid_disp type ref to cl_gui_alv_grid,
+       go_grid_crud type ref to cl_gui_alv_grid,
+       go_con       type ref to cl_gui_custom_container,
+       go_dock      type ref to cl_gui_docking_container,
+       go_split     type ref to cl_gui_splitter_container,
+       go_docu      type ref to cl_dd_document,
+       go_top       type ref to cl_gui_container,
+       go_bottom    type ref to cl_gui_container,
+       go_crud      type ref to cl_gui_container,
+       go_disp      type ref to cl_gui_container,
+       gt_fcat      type lvc_t_fcat,
+       gs_fcat      type lvc_s_fcat,
+       gs_vari      type disvariant,
+       gt_exclude   type ui_functions,
+       gs_exclude   type ui_func,
+       gt_crud_ex   type ui_functions,
+       gs_crud_ex   type ui_func,
+       gs_layo      type lvc_s_layo.
+
+
+data : ls_stable type lvc_s_stbl,
+       ok_code   type sy-ucomm,
+       et_rows   type lvc_t_row,
+       es_rows   type lvc_s_row.
+
+data : lv_flag type c length 1.
+
+data : lo_struct    type ref to cl_abap_structdescr,
+       gs_component type abap_compdescr.
+
+data : gv_mode      type c length 7,
+       gv_edit_mode type c value 'D'.
+
+
+field-symbols : <ft_table> type ui_functions,
+                <ft_alv>   like  gt_alv,
+                <fs_alv>   like line of gt_alv.
+
+constants : c_change  type c value 'CHANGE'  length 7,
+            c_delete  type c value 'DEL'   length 7,
+            c_insert  type c value 'INSERT'  length 7,
+            c_display type c value 'DISPLAY' length 7,
+            c_edit    type c value 'EDIT'    length 7,
+            c_save    type c value 'SAVE'    length 7,
+            c_new     type c value 'NEW'     length 7.
+
+constants : c_ins  type c value 'I',
+            c_del  type c value 'D',
+            c_chs  type c value 'C',
+            c_mark type c value 'MARK' length 30.
+
+constants c_refresh type c  length 7 value 'REFRESH'.
